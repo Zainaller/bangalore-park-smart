@@ -8,6 +8,9 @@ interface NavigationContextType {
   navigateTo: (view: ViewType, params?: object) => void;
   goBack: () => void;
   getParam: (key: string) => any;
+  // Add these properties to fix the type errors
+  selectedSpotId?: string;
+  bookingId?: string;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
@@ -44,8 +47,19 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children
     return viewParams ? (viewParams as any)[key] : undefined;
   };
 
+  // Extract params for direct access in the context value
+  const selectedSpotId = getParam('spotId');
+  const bookingId = getParam('bookingId');
+
   return (
-    <NavigationContext.Provider value={{ currentView, navigateTo, goBack, getParam }}>
+    <NavigationContext.Provider value={{ 
+      currentView, 
+      navigateTo, 
+      goBack, 
+      getParam,
+      selectedSpotId,
+      bookingId 
+    }}>
       {children}
     </NavigationContext.Provider>
   );

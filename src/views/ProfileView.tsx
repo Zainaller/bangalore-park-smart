@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const ProfileView: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -20,7 +20,6 @@ const ProfileView: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState(profile?.phone_number || '');
   const [isLoading, setIsLoading] = useState(false);
   
-  // Redirect to auth if not logged in
   React.useEffect(() => {
     if (!user) {
       navigateTo('auth');
@@ -28,7 +27,7 @@ const ProfileView: React.FC = () => {
   }, [user, navigateTo]);
 
   if (!user || !profile) {
-    return null; // Don't render anything while redirecting
+    return null;
   }
 
   const handleEditProfile = async () => {
@@ -141,7 +140,6 @@ const ProfileView: React.FC = () => {
         Log Out
       </Button>
 
-      {/* Edit Profile Sheet */}
       <Sheet open={openEditProfile} onOpenChange={setOpenEditProfile}>
         <SheetContent>
           <SheetHeader>
