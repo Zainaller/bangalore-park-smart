@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,39 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for our parking app
+				'park-blue': {
+					50: '#EBF8FF',
+					100: '#BEE3F8',
+					200: '#90CDF4',
+					300: '#63B3ED',
+					400: '#4299E1',
+					500: '#3182CE',
+					600: '#2B6CB0',
+					700: '#2C5282',
+					800: '#1A365D',
+					900: '#0A2540',
+				},
+				'park-teal': {
+					300: '#4FD1C5',
+					400: '#38B2AC',
+					500: '#319795',
+					600: '#2C7A7B',
+					700: '#285E61',
+				},
+				'park-gray': {
+					50: '#F7FAFC',
+					100: '#EDF2F7',
+					200: '#E2E8F0',
+					300: '#CBD5E0',
+					400: '#A0AEC0',
+					500: '#718096',
+					600: '#4A5568',
+					700: '#2D3748',
+					800: '#1A202C',
+					900: '#171923',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +117,27 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'pulse-light': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'pulse-light': 'pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 			}
 		}
 	},
