@@ -1,70 +1,51 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-type AppView = 'home' | 'search' | 'spotDetails' | 'booking' | 'profile' | 'staff' | 'confirmation';
+type ViewType = 'home' | 'search' | 'spotDetails' | 'booking' | 'profile' | 'staff' | 'confirmation' | 'auth';
 
 interface NavigationContextType {
-  currentView: AppView;
-  selectedSpotId: string | null;
-  bookingId: string | null;
-  navigateTo: (view: AppView, params?: { spotId?: string; bookingId?: string }) => void;
+  currentView: ViewType;
+  navigateTo: (view: ViewType, params?: object) => void;
   goBack: () => void;
+  getParam: (key: string) => any;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-interface NavigationHistoryItem {
-  view: AppView;
-  spotId?: string | null;
-  bookingId?: string | null;
+interface NavigationProviderProps {
+  children: React.ReactNode;
 }
 
-export const NavigationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentView, setCurrentView] = useState<AppView>('home');
-  const [selectedSpotId, setSelectedSpotId] = useState<string | null>(null);
-  const [bookingId, setBookingId] = useState<string | null>(null);
-  const [history, setHistory] = useState<NavigationHistoryItem[]>([{ view: 'home' }]);
+export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children }) => {
+  const [currentView, setCurrentView] = useState<ViewType>('home');
+  const [viewHistory, setViewHistory] = useState<Array<{ view: ViewType, params: object }>>([{ view: 'home', params: {} }]);
+  const [viewParams, setViewParams] = useState<object>({});
 
-  const navigateTo = (view: AppView, params?: { spotId?: string; bookingId?: string }) => {
-    // Add current state to history before navigating
-    setHistory(prev => [...prev, { 
-      view: currentView, 
-      spotId: selectedSpotId,
-      bookingId: bookingId
-    }]);
-
-    // Update state with new navigation
+  const navigateTo = (view: ViewType, params: object = {}) => {
+    setViewHistory(prev => [...prev, { view: currentView, params: viewParams }]);
     setCurrentView(view);
-    setSelectedSpotId(params?.spotId || null);
-    setBookingId(params?.bookingId || null);
+    setViewParams(params);
   };
 
   const goBack = () => {
-    if (history.length > 1) {
-      // Pop the last item as current state
-      const newHistory = [...history];
-      const previousState = newHistory.pop();
-      
-      if (previousState) {
-        setCurrentView(previousState.view);
-        setSelectedSpotId(previousState.spotId || null);
-        setBookingId(previousState.bookingId || null);
-      }
-      
-      setHistory(newHistory);
-    }
+    // Don't go back if we're at the root
+    if (viewHistory.length <= 1) return;
+    
+    // Pop the last view from history
+    const newHistory = [...viewHistory];
+    const lastView = newHistory.pop() || { view: 'home', params: {} };
+    
+    setViewHistory(newHistory);
+    setCurrentView(lastView.view);
+    setViewParams(lastView.params);
+  };
+
+  const getParam = (key: string) => {
+    return viewParams ? (viewParams as any)[key] : undefined;
   };
 
   return (
-    <NavigationContext.Provider
-      value={{
-        currentView,
-        selectedSpotId,
-        bookingId,
-        navigateTo,
-        goBack
-      }}
-    >
+    <NavigationContext.Provider value={{ currentView, navigateTo, goBack, getParam }}>
       {children}
     </NavigationContext.Provider>
   );
@@ -72,7 +53,7 @@ export const NavigationProvider: React.FC<{ children: ReactNode }> = ({ children
 
 export const useNavigation = (): NavigationContextType => {
   const context = useContext(NavigationContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useNavigation must be used within a NavigationProvider');
   }
   return context;
