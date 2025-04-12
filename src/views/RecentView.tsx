@@ -10,11 +10,11 @@ const RecentView: React.FC = () => {
   const recentSpots = mockParkingSpots.slice(0, 4);
   
   return (
-    <Layout title="Recent Parking" showBackButton>
+    <Layout title="ParkIt" showBackButton>
       <div className="mb-6">
         <div className="flex items-center mb-4">
-          <Clock className="text-park-teal-600 mr-2" />
-          <h1 className="text-xl font-semibold text-primary">Recently Viewed</h1>
+          <Clock className="text-gray-400 mr-2" />
+          <h1 className="text-xl font-semibold text-foreground">Recently Viewed</h1>
         </div>
         <p className="text-muted-foreground">Your recently viewed parking locations</p>
       </div>

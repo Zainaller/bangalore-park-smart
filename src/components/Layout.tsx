@@ -69,7 +69,7 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
   return (
     <button 
       onClick={() => navigateTo(view)}
-      className={`flex flex-col items-center p-1 ${isActive ? 'text-park-teal-500' : 'text-park-gray-500'}`}
+      className={`flex flex-col items-center p-1 ${isActive ? 'text-primary' : 'text-muted-foreground'}`}
     >
       <span className="text-xl">{icon}</span>
       <span className="text-xs mt-1">{label}</span>
