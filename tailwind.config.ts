@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,40 +19,45 @@ export default {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        // Dark theme base colors
+        background: {
+          DEFAULT: '#121212',
+          secondary: '#1E1E1E',
+          tertiary: '#2C2C2C',
+        },
+        foreground: {
+          DEFAULT: '#E0E0E0',
+          muted: '#A0A0A0',
+        },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          DEFAULT: '#3B82F6',
+          foreground: '#FFFFFF',
+          dark: '#2563EB',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
+          DEFAULT: '#4B5563',
+          foreground: '#F3F4F6',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
+          DEFAULT: '#10B981',
+          foreground: '#FFFFFF',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
+        destructive: {
+          DEFAULT: '#EF4444',
+          foreground: '#FFFFFF',
         },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
+        // Parking specific dark colors
+        'park-dark': {
+          50: '#1A202C',
+          100: '#2D3748',
+          200: '#4A5568',
+          300: '#718096',
+          400: '#A0AEC0',
+          500: '#CBD5E0',
+          600: '#E2E8F0',
+          700: '#EDF2F7',
+          800: '#F7FAFC',
         },
-        // Dark theme parking colors
         'park-blue': {
           50: '#0A2540',
           100: '#1A365D',
@@ -72,18 +76,6 @@ export default {
           500: '#319795',
           600: '#38B2AC',
           700: '#4FD1C5',
-        },
-        'park-gray': {
-          50: '#171923',
-          100: '#1A202C',
-          200: '#2D3748',
-          300: '#4A5568',
-          400: '#718096',
-          500: '#A0AEC0',
-          600: '#CBD5E0',
-          700: '#E2E8F0',
-          800: '#EDF2F7',
-          900: '#F7FAFC',
         },
       },
       borderRadius: {
