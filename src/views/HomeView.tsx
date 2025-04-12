@@ -27,7 +27,7 @@ const HomeView: React.FC = () => {
     .slice(0, 3);
   
   return (
-    <Layout title="ParkSmart Bangalore">
+    <Layout title="ParkIt">
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-2 text-park-blue-900">Find Parking</h1>
         <p className="text-park-gray-600 mb-4">Reserve your spot in advance, guaranteed spaces</p>
@@ -36,10 +36,30 @@ const HomeView: React.FC = () => {
       </div>
       
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <QuickAccessButton icon={<MapPin size={24} />} label="Nearby" color="bg-park-blue-100" />
-        <QuickAccessButton icon={<Clock size={24} />} label="Recent" color="bg-park-teal-100" />
-        <QuickAccessButton icon={<Calendar size={24} />} label="Saved" color="bg-purple-100" />
-        <QuickAccessButton icon={<Car size={24} />} label="My Cars" color="bg-amber-100" />
+        <QuickAccessButton 
+          icon={<MapPin size={24} />} 
+          label="Nearby" 
+          color="bg-park-blue-100" 
+          onClick={() => navigateTo('nearby')}
+        />
+        <QuickAccessButton 
+          icon={<Clock size={24} />} 
+          label="Recent" 
+          color="bg-park-teal-100" 
+          onClick={() => navigateTo('recent')}
+        />
+        <QuickAccessButton 
+          icon={<Calendar size={24} />} 
+          label="Saved" 
+          color="bg-purple-100" 
+          onClick={() => navigateTo('saved')}
+        />
+        <QuickAccessButton 
+          icon={<Car size={24} />} 
+          label="My Cars" 
+          color="bg-amber-100" 
+          onClick={() => navigateTo('myCars')}
+        />
       </div>
       
       <section className="mb-6">
@@ -67,11 +87,15 @@ interface QuickAccessButtonProps {
   icon: React.ReactNode;
   label: string;
   color: string;
+  onClick: () => void;
 }
 
-const QuickAccessButton: React.FC<QuickAccessButtonProps> = ({ icon, label, color }) => {
+const QuickAccessButton: React.FC<QuickAccessButtonProps> = ({ icon, label, color, onClick }) => {
   return (
-    <button className="flex flex-col items-center justify-center rounded-lg p-3 transition-transform hover:scale-105">
+    <button 
+      className="flex flex-col items-center justify-center rounded-lg p-3 transition-transform hover:scale-105"
+      onClick={onClick}
+    >
       <div className={`${color} rounded-full p-3 mb-2`}>{icon}</div>
       <span className="text-xs font-medium text-park-gray-700">{label}</span>
     </button>

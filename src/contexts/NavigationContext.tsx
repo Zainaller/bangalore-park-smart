@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
-type ViewType = 'home' | 'search' | 'spotDetails' | 'booking' | 'profile' | 'staff' | 'confirmation' | 'auth';
+type ViewType = 'home' | 'search' | 'spotDetails' | 'booking' | 'profile' | 'staff' | 'confirmation' | 'auth' | 'nearby' | 'recent' | 'saved' | 'myCars';
 
 interface NavigationContextType {
   currentView: ViewType;

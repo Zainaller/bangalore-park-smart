@@ -1,0 +1,37 @@
+
+import React from 'react';
+import Layout from '../components/Layout';
+import ParkingSpotCard from '../components/ParkingSpotCard';
+import { mockParkingSpots } from '../data/parkingData';
+import { Clock } from 'lucide-react';
+
+const RecentView: React.FC = () => {
+  // For demo, we'll just show 4 random spots as "recently viewed"
+  const recentSpots = mockParkingSpots.slice(0, 4);
+  
+  return (
+    <Layout title="Recent Parking" showBackButton>
+      <div className="mb-6">
+        <div className="flex items-center mb-4">
+          <Clock className="text-park-teal-600 mr-2" />
+          <h1 className="text-xl font-semibold text-park-blue-800">Recently Viewed</h1>
+        </div>
+        <p className="text-park-gray-600">Your recently viewed parking locations</p>
+      </div>
+      
+      {recentSpots.length > 0 ? (
+        <div className="space-y-4">
+          {recentSpots.map(spot => (
+            <ParkingSpotCard key={spot.id} spot={spot} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center p-8">
+          <p className="text-park-gray-600">No recently viewed parking spots</p>
+        </div>
+      )}
+    </Layout>
+  );
+};
+
+export default RecentView;

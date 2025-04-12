@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Home, Search, Ticket, UserCircle } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -45,10 +45,10 @@ const Layout: React.FC<LayoutProps> = ({
       {/* Footer/Navigation */}
       <footer className="sticky bottom-0 bg-white border-t shadow-[0_-1px_3px_rgba(0,0,0,0.1)]">
         <div className="container px-4 py-3 flex justify-around">
-          <NavButton icon="home" label="Home" view="home" />
-          <NavButton icon="search" label="Search" view="search" />
-          <NavButton icon="ticket" label="Bookings" view="booking" />
-          <NavButton icon="user" label="Profile" view="profile" />
+          <NavButton icon={<Home size={20} />} label="Home" view="home" />
+          <NavButton icon={<Search size={20} />} label="Search" view="search" />
+          <NavButton icon={<Ticket size={20} />} label="Bookings" view="booking" />
+          <NavButton icon={<UserCircle size={20} />} label="Profile" view="profile" />
         </div>
       </footer>
     </div>
@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({
 };
 
 interface NavButtonProps {
-  icon: string;
+  icon: React.ReactNode;
   label: string;
   view: 'home' | 'search' | 'booking' | 'profile';
 }
@@ -66,20 +66,12 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
   
   const isActive = currentView === view;
   
-  // Map icon names to emoji (in a real app, we'd use proper icons)
-  const iconMap: Record<string, string> = {
-    home: '🏠',
-    search: '🔍',
-    ticket: '🎫',
-    user: '👤',
-  };
-  
   return (
     <button 
       onClick={() => navigateTo(view)}
       className={`flex flex-col items-center p-1 ${isActive ? 'text-park-teal-500' : 'text-park-gray-500'}`}
     >
-      <span className="text-xl">{iconMap[icon]}</span>
+      <span className="text-xl">{icon}</span>
       <span className="text-xs mt-1">{label}</span>
     </button>
   );
