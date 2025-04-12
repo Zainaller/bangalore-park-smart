@@ -39,13 +39,13 @@ const ParkingSpotCard: React.FC<ParkingSpotCardProps> = ({ spot, compact = false
     return (
       <div 
         onClick={handleClick}
-        className="bg-white rounded-lg shadow-md p-3 mb-3 cursor-pointer hover:shadow-lg transition-shadow"
+        className="bg-secondary/80 rounded-lg shadow-md p-3 mb-3 cursor-pointer hover:bg-secondary transition-all duration-200"
       >
         <div className="flex justify-between items-center">
-          <h3 className="font-medium text-park-blue-800">{spot.name}</h3>
+          <h3 className="font-medium text-primary">{spot.name}</h3>
           <Badge variant="outline" className="text-park-teal-500">₹{spot.hourlyRate}/hr</Badge>
         </div>
-        <div className="flex items-center text-sm text-park-gray-500 mt-1">
+        <div className="flex items-center text-sm text-muted-foreground mt-1">
           <MapPin size={14} className="mr-1" />
           <span className="truncate">{spot.address}</span>
         </div>
@@ -66,7 +66,7 @@ const ParkingSpotCard: React.FC<ParkingSpotCardProps> = ({ spot, compact = false
   return (
     <div 
       onClick={handleClick}
-      className="bg-white rounded-lg shadow-md overflow-hidden mb-4 cursor-pointer hover:shadow-lg transition-shadow animate-fade-in"
+      className="glass-morphism rounded-lg shadow-md overflow-hidden mb-4 cursor-pointer hover:bg-secondary/20 transition-all duration-200 animate-fade-in"
     >
       <div className="h-32 bg-park-gray-200 relative">
         <img 
@@ -80,14 +80,14 @@ const ParkingSpotCard: React.FC<ParkingSpotCardProps> = ({ spot, compact = false
       </div>
       
       <div className="p-4">
-        <h3 className="font-semibold text-lg text-park-blue-800">{spot.name}</h3>
+        <h3 className="font-semibold text-lg text-primary">{spot.name}</h3>
         
-        <div className="flex items-center text-park-gray-500 mt-1">
+        <div className="flex items-center text-muted-foreground mt-1">
           <MapPin size={16} className="mr-1" />
           <span>{spot.address}</span>
         </div>
         
-        <div className="flex items-center text-park-gray-500 mt-1">
+        <div className="flex items-center text-muted-foreground mt-1">
           <Clock size={16} className="mr-1" />
           <span>{spot.openingHours.open} - {spot.openingHours.close}</span>
         </div>
@@ -104,8 +104,8 @@ const ParkingSpotCard: React.FC<ParkingSpotCardProps> = ({ spot, compact = false
           </div>
         </div>
         
-        <div className="mt-3 bg-park-gray-100 rounded p-2 text-sm">
-          <span className="font-medium text-park-blue-700">{spot.availableSpots}</span> of <span>{spot.totalSpots}</span> spots available
+        <div className="mt-3 bg-secondary/50 rounded p-2 text-sm">
+          <span className="font-medium text-park-teal-500">{spot.availableSpots}</span> of <span>{spot.totalSpots}</span> spots available
         </div>
         
         <div className="mt-3 flex flex-wrap gap-2">

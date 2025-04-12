@@ -53,7 +53,7 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Custom parking colors for dark mode
+        // Dark theme parking colors
         'park-blue': {
           50: '#0A2540',
           100: '#1A365D',

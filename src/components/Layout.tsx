@@ -21,18 +21,18 @@ const Layout: React.FC<LayoutProps> = ({
   return (
     <div className={`min-h-screen flex flex-col ${className}`}>
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-white border-b shadow-sm">
+      <header className="sticky top-0 z-10 bg-background border-b border-border shadow-sm">
         <div className="container px-4 py-3 flex items-center">
           {showBackButton && (
             <button 
               onClick={goBack}
-              className="mr-3 p-1 rounded-full hover:bg-gray-100"
+              className="mr-3 p-1 rounded-full hover:bg-secondary"
             >
-              <ArrowLeft size={24} className="text-park-blue-700" />
+              <ArrowLeft size={24} className="text-primary" />
             </button>
           )}
           {title && (
-            <h1 className="text-lg font-semibold text-park-blue-800">{title}</h1>
+            <h1 className="text-lg font-semibold text-primary">{title}</h1>
           )}
         </div>
       </header>
@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({
       </main>
       
       {/* Footer/Navigation */}
-      <footer className="sticky bottom-0 bg-white border-t shadow-[0_-1px_3px_rgba(0,0,0,0.1)]">
+      <footer className="sticky bottom-0 bg-background border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.2)]">
         <div className="container px-4 py-3 flex justify-around">
           <NavButton icon={<Home size={20} />} label="Home" view="home" />
           <NavButton icon={<Search size={20} />} label="Search" view="search" />

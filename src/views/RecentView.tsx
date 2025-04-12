@@ -14,9 +14,9 @@ const RecentView: React.FC = () => {
       <div className="mb-6">
         <div className="flex items-center mb-4">
           <Clock className="text-park-teal-600 mr-2" />
-          <h1 className="text-xl font-semibold text-park-blue-800">Recently Viewed</h1>
+          <h1 className="text-xl font-semibold text-primary">Recently Viewed</h1>
         </div>
-        <p className="text-park-gray-600">Your recently viewed parking locations</p>
+        <p className="text-muted-foreground">Your recently viewed parking locations</p>
       </div>
       
       {recentSpots.length > 0 ? (
@@ -27,7 +27,7 @@ const RecentView: React.FC = () => {
         </div>
       ) : (
         <div className="text-center p-8">
-          <p className="text-park-gray-600">No recently viewed parking spots</p>
+          <p className="text-muted-foreground">No recently viewed parking spots</p>
         </div>
       )}
     </Layout>
