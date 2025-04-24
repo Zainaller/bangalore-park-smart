@@ -6,11 +6,13 @@ import ParkingSpotCard from '../components/ParkingSpotCard';
 import { mockParkingSpots } from '../data/parkingData';
 import { Filter, MapPin, SortAsc } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const SearchView: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState<'price' | 'distance' | 'availability'>('distance');
   const [showFilters, setShowFilters] = useState(false);
+  const isMobile = useIsMobile();
   
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -38,6 +40,8 @@ const SearchView: React.FC = () => {
       return 0;
     });
   }, [filteredSpots, sortOption]);
+
+  const scrollAreaHeight = isMobile ? 'h-[calc(100vh-280px)]' : 'h-[calc(100vh-260px)]';
   
   return (
     <Layout title="Search Parking" showBackButton={true}>
@@ -48,7 +52,7 @@ const SearchView: React.FC = () => {
         />
       </div>
       
-      <div className="flex justify-between mb-4">
+      <div className="flex flex-wrap md:flex-nowrap justify-between gap-2 mb-4">
         <button 
           onClick={() => setShowFilters(!showFilters)}
           className="flex items-center text-primary border border-border/50 rounded-full px-4 py-1.5"
@@ -57,10 +61,10 @@ const SearchView: React.FC = () => {
           <span>Filters</span>
         </button>
         
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 overflow-x-auto pb-1 scrollbar-none">
           <button 
             onClick={() => setSortOption('distance')}
-            className={`px-3 py-1.5 text-sm rounded-full ${
+            className={`px-3 py-1.5 text-sm rounded-full whitespace-nowrap ${
               sortOption === 'distance' 
                 ? 'bg-primary text-primary-foreground' 
                 : 'bg-secondary text-foreground'
@@ -71,7 +75,7 @@ const SearchView: React.FC = () => {
           
           <button 
             onClick={() => setSortOption('price')}
-            className={`px-3 py-1.5 text-sm rounded-full ${
+            className={`px-3 py-1.5 text-sm rounded-full whitespace-nowrap ${
               sortOption === 'price' 
                 ? 'bg-primary text-primary-foreground' 
                 : 'bg-secondary text-foreground'
@@ -82,7 +86,7 @@ const SearchView: React.FC = () => {
           
           <button 
             onClick={() => setSortOption('availability')}
-            className={`px-3 py-1.5 text-sm rounded-full ${
+            className={`px-3 py-1.5 text-sm rounded-full whitespace-nowrap ${
               sortOption === 'availability' 
                 ? 'bg-primary text-primary-foreground' 
                 : 'bg-secondary text-foreground'
@@ -97,7 +101,7 @@ const SearchView: React.FC = () => {
         <div className="bg-secondary/50 rounded-lg p-4 mb-4 border border-border/50">
           <h3 className="font-medium mb-2">Filter Options</h3>
           
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <label className="flex items-center space-x-2">
               <input type="checkbox" className="form-checkbox text-primary" />
               <span>24/7 Access</span>
@@ -138,7 +142,7 @@ const SearchView: React.FC = () => {
         </p>
       </div>
       
-      <ScrollArea className="h-[calc(100vh-280px)] pr-4">
+      <ScrollArea className={`${scrollAreaHeight} pr-4`}>
         <div className="space-y-4 pb-4">
           {sortedSpots.map(spot => (
             <ParkingSpotCard key={spot.id} spot={spot} />

@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import { useAuth } from '../contexts/AuthContext';
 import { ArrowLeft, Home, Search, Ticket, UserCircle } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const { goBack } = useNavigation();
   const { user } = useAuth();
+  const isMobile = useIsMobile();
   
   return (
     <div className={`min-h-screen flex flex-col ${className}`}>
@@ -38,16 +40,16 @@ const Layout: React.FC<LayoutProps> = ({
         </div>
       </header>
       
-      <main className="flex-1 container px-4 py-4 pb-24 overflow-hidden">
+      <main className="flex-1 container px-4 py-4 pb-24 overflow-auto">
         {children}
       </main>
       
-      <footer className="fixed bottom-0 left-0 right-0 backdrop-blur-xl bg-background/80 border-t border-border/50">
+      <footer className="fixed bottom-0 left-0 right-0 z-20 backdrop-blur-xl bg-background/80 border-t border-border/50">
         <div className="container px-4 py-2 flex justify-around">
-          <NavButton icon={<Home size={20} />} label="Home" view="home" />
-          <NavButton icon={<Search size={20} />} label="Search" view="search" />
-          {user && <NavButton icon={<Ticket size={20} />} label="Bookings" view="booking" />}
-          <NavButton icon={<UserCircle size={20} />} label="Profile" view="profile" />
+          <NavButton icon={<Home size={isMobile ? 20 : 24} />} label="Home" view="home" />
+          <NavButton icon={<Search size={isMobile ? 20 : 24} />} label="Search" view="search" />
+          {user && <NavButton icon={<Ticket size={isMobile ? 20 : 24} />} label="Bookings" view="booking" />}
+          <NavButton icon={<UserCircle size={isMobile ? 20 : 24} />} label="Profile" view="profile" />
         </div>
       </footer>
     </div>
@@ -62,6 +64,7 @@ interface NavButtonProps {
 
 const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
   const { navigateTo, currentView } = useNavigation();
+  const isMobile = useIsMobile();
   
   const isActive = currentView === view;
   
@@ -72,8 +75,8 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
         isActive ? 'text-primary' : 'text-muted-foreground'
       }`}
     >
-      <span className="text-xl mb-0.5">{icon}</span>
-      <span className="text-xs">{label}</span>
+      <span className={`${isMobile ? 'text-xl' : 'text-2xl'} mb-0.5`}>{icon}</span>
+      <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>{label}</span>
     </button>
   );
 };
