@@ -90,8 +90,8 @@ const AuthView: React.FC = () => {
       <div className="flex flex-col items-center pt-4">
         <div className="w-full max-w-md space-y-6 p-4">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-park-blue-800">Welcome to ParkSmart</h1>
-            <p className="text-park-gray-500">Sign in or create an account to continue</p>
+            <h1 className="text-2xl font-bold text-primary">Welcome to ParkIt</h1>
+            <p className="text-muted-foreground">Sign in or create an account to continue</p>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

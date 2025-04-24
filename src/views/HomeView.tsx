@@ -1,13 +1,24 @@
-
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
+import GuestHome from '../components/GuestHome';
 import SearchBar from '../components/SearchBar';
 import ParkingSpotCard from '../components/ParkingSpotCard';
 import { mockParkingSpots } from '../data/parkingData';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useAuth } from '../contexts/AuthContext';
 import { MapPin, Clock, Bookmark, Car } from 'lucide-react';
 
 const HomeView: React.FC = () => {
+  const { user } = useAuth();
+  
+  return (
+    <Layout title="ParkIt">
+      {user ? <AuthenticatedHome /> : <GuestHome />}
+    </Layout>
+  );
+};
+
+const AuthenticatedHome: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { navigateTo } = useNavigation();
   
@@ -27,9 +38,11 @@ const HomeView: React.FC = () => {
     .slice(0, 3);
   
   return (
-    <Layout title="ParkIt">
+    <>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">ParkIt</h1>
+        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+          ParkIt
+        </h1>
         <p className="text-muted-foreground text-lg">Find and reserve parking spots instantly</p>
         
         <div className="mt-6">
@@ -85,7 +98,7 @@ const HomeView: React.FC = () => {
           ))}
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

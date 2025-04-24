@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useAuth } from '../contexts/AuthContext';
 import { ArrowLeft, Home, Search, Ticket, UserCircle } from 'lucide-react';
 
 interface LayoutProps {
@@ -16,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({
   className = ""
 }) => {
   const { goBack } = useNavigation();
+  const { user } = useAuth();
   
   return (
     <div className={`min-h-screen flex flex-col ${className}`}>
@@ -43,7 +46,7 @@ const Layout: React.FC<LayoutProps> = ({
         <div className="container px-4 py-2 flex justify-around">
           <NavButton icon={<Home size={20} />} label="Home" view="home" />
           <NavButton icon={<Search size={20} />} label="Search" view="search" />
-          <NavButton icon={<Ticket size={20} />} label="Bookings" view="booking" />
+          {user && <NavButton icon={<Ticket size={20} />} label="Bookings" view="booking" />}
           <NavButton icon={<UserCircle size={20} />} label="Profile" view="profile" />
         </div>
       </footer>
