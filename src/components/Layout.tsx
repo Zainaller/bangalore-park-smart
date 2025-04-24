@@ -40,18 +40,20 @@ const Layout: React.FC<LayoutProps> = ({
         </div>
       </header>
       
-      <main className="flex-1 container px-4 py-4 pb-24 overflow-auto">
+      <main className="flex-1 container px-4 py-4 pb-8 overflow-auto">
         {children}
       </main>
       
-      <footer className="fixed bottom-0 left-0 right-0 z-20 backdrop-blur-xl bg-background/80 border-t border-border/50">
-        <div className="container px-4 py-2 flex justify-around">
-          <NavButton icon={<Home size={isMobile ? 20 : 24} />} label="Home" view="home" />
-          <NavButton icon={<Search size={isMobile ? 20 : 24} />} label="Search" view="search" />
-          {user && <NavButton icon={<Ticket size={isMobile ? 20 : 24} />} label="Bookings" view="booking" />}
-          <NavButton icon={<UserCircle size={isMobile ? 20 : 24} />} label="Profile" view="profile" />
-        </div>
-      </footer>
+      {user && (
+        <footer className="fixed bottom-0 left-0 right-0 z-20 backdrop-blur-xl bg-background/80 border-t border-border/50">
+          <div className="container px-4 py-2 flex justify-around">
+            <NavButton icon={<Home size={isMobile ? 20 : 24} />} label="Home" view="home" />
+            <NavButton icon={<Search size={isMobile ? 20 : 24} />} label="Search" view="search" />
+            <NavButton icon={<Ticket size={isMobile ? 20 : 24} />} label="Bookings" view="booking" />
+            <NavButton icon={<UserCircle size={isMobile ? 20 : 24} />} label="Profile" view="profile" />
+          </div>
+        </footer>
+      )}
     </div>
   );
 };
@@ -82,3 +84,4 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
 };
 
 export default Layout;
+
