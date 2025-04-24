@@ -28,46 +28,48 @@ const HomeView: React.FC = () => {
   
   return (
     <Layout title="ParkIt">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-2 text-foreground">ParkIt</h1>
-        <p className="text-muted-foreground mb-4">Reserve your spot in advance, guaranteed spaces</p>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">ParkIt</h1>
+        <p className="text-muted-foreground text-lg">Find and reserve parking spots instantly</p>
         
-        <SearchBar onSearch={handleSearch} />
+        <div className="mt-6">
+          <SearchBar onSearch={handleSearch} />
+        </div>
       </div>
       
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-4 gap-4 mb-8">
         <QuickAccessButton 
           icon={<MapPin size={24} />} 
           label="Nearby" 
-          color="bg-blue-900" 
-          bgColor="bg-blue-950"
+          color="bg-blue-600/20" 
+          bgColor="bg-blue-950/40"
           onClick={() => navigateTo('nearby')}
         />
         <QuickAccessButton 
           icon={<Clock size={24} />} 
           label="Recent" 
-          color="bg-gray-700"
-          bgColor="bg-gray-900"
+          color="bg-gray-600/20"
+          bgColor="bg-gray-900/40"
           onClick={() => navigateTo('recent')}
         />
         <QuickAccessButton 
           icon={<Bookmark size={24} />} 
           label="Saved" 
-          color="bg-purple-300"
-          bgColor="bg-purple-950" 
+          color="bg-purple-600/20"
+          bgColor="bg-purple-950/40"
           onClick={() => navigateTo('saved')}
         />
         <QuickAccessButton 
           icon={<Car size={24} />} 
           label="My Cars" 
-          color="bg-yellow-200"
-          bgColor="bg-yellow-900"
+          color="bg-amber-600/20"
+          bgColor="bg-amber-950/40"
           onClick={() => navigateTo('myCars')}
         />
       </div>
       
-      <section className="mb-6">
-        <h2 className="text-lg font-semibold mb-3 text-foreground">Nearby Parking</h2>
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 text-primary">Nearby Parking</h2>
         <div className="space-y-4">
           {nearbySpots.map(spot => (
             <ParkingSpotCard key={spot.id} spot={spot} compact={true} />
@@ -76,7 +78,7 @@ const HomeView: React.FC = () => {
       </section>
       
       <section>
-        <h2 className="text-lg font-semibold mb-3 text-foreground">Popular Parking</h2>
+        <h2 className="text-xl font-semibold mb-4 text-primary">Popular Spots</h2>
         <div className="space-y-4">
           {popularSpots.map(spot => (
             <ParkingSpotCard key={spot.id} spot={spot} />

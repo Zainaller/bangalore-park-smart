@@ -10,13 +10,15 @@ const NearbyView: React.FC = () => {
   const nearbySpots = mockParkingSpots;
   
   return (
-    <Layout title="Nearby Parking" showBackButton>
-      <div className="mb-6">
-        <div className="flex items-center mb-4">
-          <MapPin className="text-park-blue-600 mr-2" />
-          <h1 className="text-xl font-semibold text-park-blue-800">Parking Near You</h1>
+    <Layout title="ParkIt" showBackButton>
+      <div className="mb-8">
+        <div className="flex items-center mb-3">
+          <MapPin className="text-primary mr-2" size={24} />
+          <h1 className="text-2xl font-semibold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            Nearby Spots
+          </h1>
         </div>
-        <p className="text-park-gray-600">Find convenient parking spots close to your current location</p>
+        <p className="text-muted-foreground text-lg">Find convenient parking near you</p>
       </div>
       
       {nearbySpots.length > 0 ? (
@@ -26,8 +28,8 @@ const NearbyView: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="text-center p-8">
-          <p className="text-park-gray-600">No nearby parking spots found</p>
+        <div className="text-center p-8 rounded-lg bg-secondary/50">
+          <p className="text-muted-foreground">No nearby parking spots found</p>
         </div>
       )}
     </Layout>
