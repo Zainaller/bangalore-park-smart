@@ -6,6 +6,8 @@ import { useIsMobile } from '../hooks/use-mobile';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Route, ParkingMeter } from 'lucide-react';
+
 const GuestHome: React.FC = () => {
   const {
     navigateTo
@@ -13,7 +15,6 @@ const GuestHome: React.FC = () => {
   const isMobile = useIsMobile();
   const [activeFeature, setActiveFeature] = useState<number>(0);
 
-  // Use higher quality, more modern-looking parking images
   const cityImages = [{
     src: "https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?q=80&w=2000",
     title: "Smart Parking in Bengaluru",
@@ -28,7 +29,6 @@ const GuestHome: React.FC = () => {
     subtitle: "Premium spots at top locations across the city"
   }];
 
-  // Auto-scroll carousel
   const [carouselApi, setCarouselApi] = useState<any>(null);
   useEffect(() => {
     if (!carouselApi) return;
@@ -38,7 +38,6 @@ const GuestHome: React.FC = () => {
     return () => clearInterval(interval);
   }, [carouselApi]);
 
-  // Auto rotate features
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveFeature(prev => (prev + 1) % 6);
@@ -46,7 +45,6 @@ const GuestHome: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animation for stats
   const [animatedStats, setAnimatedStats] = useState({
     users: 0,
     spots: 0,
@@ -88,9 +86,9 @@ const GuestHome: React.FC = () => {
       if (statsElement) observer.unobserve(statsElement);
     };
   }, []);
+
   return <ScrollArea className="h-[calc(100vh-80px)]">
       <div className="flex flex-col items-center space-y-12 py-8 px-4 pb-16">
-        {/* Hero Section with Dynamic Image Carousel and prominent CTAs */}
         <div className="w-full max-w-6xl mx-auto relative">
           <Carousel className="w-full" setApi={setCarouselApi}>
             <CarouselContent>
@@ -102,7 +100,6 @@ const GuestHome: React.FC = () => {
                         <h2 className="text-3xl font-bold mb-2">{image.title}</h2>
                         <p className="text-lg opacity-90 mb-6">{image.subtitle}</p>
                         
-                        {/* Hero CTA buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">
                           <Button size="lg" onClick={() => navigateTo('auth', {
                         tab: 'signup'
@@ -130,9 +127,7 @@ const GuestHome: React.FC = () => {
           </Carousel>
         </div>
 
-        {/* Hero Text Section */}
         <div className="text-center space-y-6 max-w-2xl mx-auto relative">
-          {/* Adding a subtle glowing effect */}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
           
           <div className="flex items-center justify-center">
@@ -161,21 +156,18 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* Statistics Section with animation */}
         <div id="stats-section" className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
           <StatCard number={animatedStats.users.toLocaleString()} label="Happy Users" />
           <StatCard number={animatedStats.spots.toLocaleString()} label="Parking Spots" />
           <StatCard number={`${animatedStats.satisfaction}%`} label="Satisfaction Rate" />
         </div>
 
-        {/* Features Grid with animations */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-          <FeatureCard icon={<Car className="text-primary w-8 h-8" />} title="Smart Booking" description="Book parking spots instantly with our intelligent reservation system" imageSrc="https://images.unsplash.com/photo-1603899309484-dd6a5a361b33?q=80&w=2000" isActive={activeFeature === 0} />
+          <FeatureCard icon={<Car className="text-primary w-8 h-8" />} title="Smart Booking" description="Book parking spots instantly with our intelligent reservation system" imageSrc="https://images.unsplash.com/photo-1603899309484-dd6a5a361b31?q=80&w=2000" isActive={activeFeature === 0} />
           <FeatureCard icon={<Shield className="text-primary w-8 h-8" />} title="Secure Payments" description="Your transactions are protected with bank-level security" imageSrc="https://images.unsplash.com/photo-1607004468138-e7e23ea26947?q=80&w=2000" isActive={activeFeature === 1} />
           <FeatureCard icon={<Clock className="text-primary w-8 h-8" />} title="24/7 Access" description="Find and book parking spots anytime, anywhere" imageSrc="https://images.unsplash.com/photo-1508029392317-134e36de4486?q=80&w=2000" isActive={activeFeature === 2} />
         </div>
 
-        {/* Bengaluru specific section */}
         <div className="w-full max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Parking in Bengaluru</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -196,7 +188,6 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced: Interactive Map & AR Experience Section */}
         <div className="w-full max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-8 text-primary">Parking Reinvented</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -238,7 +229,6 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced: Data-driven Parking Insights Section */}
         <div className="w-full max-w-5xl">
           <div className="rounded-xl overflow-hidden bg-gradient-to-br from-slate-900/40 to-primary/5 backdrop-blur-sm">
             <div className="grid grid-cols-1 lg:grid-cols-5">
@@ -265,7 +255,6 @@ const GuestHome: React.FC = () => {
                 <img src="https://images.unsplash.com/photo-1556139943-4bdca53adf1e?q=80&w=2000" alt="Smart city data visualization" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/30 to-transparent"></div>
                 
-                {/* Animated data points */}
                 {[...Array(15)].map((_, i) => <div key={i} className="absolute bg-primary/80 rounded-full animate-pulse" style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
@@ -279,7 +268,62 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
+        <div className="w-full max-w-6xl bg-gradient-to-br from-slate-900/40 to-primary/5 rounded-xl overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+            <div className="flex flex-col justify-center space-y-6">
+              <h2 className="text-3xl font-bold text-white">3D Mall Parking Navigation</h2>
+              <p className="text-gray-300">
+                Experience next-generation parking with our interactive 3D mall maps. Navigate complex parking structures with ease and find the perfect spot.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <MapPinCheck className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-gray-300">Real-time spot availability</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Route className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-gray-300">Turn-by-turn navigation to your spot</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <ParkingMeter className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-gray-300">Multiple floor visualization</span>
+                </div>
+              </div>
+              <Button 
+                onClick={() => navigateTo('search')} 
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90"
+              >
+                <MapPin className="mr-2 h-4 w-4" />
+                Explore Available Spots
+              </Button>
+            </div>
+            
+            <div className="relative min-h-[400px] rounded-xl overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2000" 
+                alt="3D Mall Parking Map" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent">
+                <div className="absolute w-8 h-8 top-1/4 left-1/3">
+                  <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></div>
+                  <div className="relative inline-flex rounded-full h-8 w-8 bg-primary"></div>
+                </div>
+                <div className="absolute w-8 h-8 bottom-1/3 right-1/4">
+                  <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></div>
+                  <div className="relative inline-flex rounded-full h-8 w-8 bg-green-500"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-primary/5 w-full py-16 px-4 rounded-3xl relative overflow-hidden">
           <div className="absolute -z-10 inset-0">
             <div className="absolute top-0 right-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl"></div>
@@ -312,6 +356,7 @@ const GuestHome: React.FC = () => {
       </div>
     </ScrollArea>;
 };
+
 interface StatCardProps {
   number: string;
   label: string;
@@ -325,6 +370,7 @@ const StatCard: React.FC<StatCardProps> = ({
       <div className="text-muted-foreground">{label}</div>
     </div>;
 };
+
 interface FeatureCardProps {
   icon: React.ReactNode;
   title: string;
@@ -354,6 +400,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       </CardContent>
     </Card>;
 };
+
 interface StepCardProps {
   icon: React.ReactNode;
   step: string;
@@ -383,4 +430,5 @@ const StepCard: React.FC<StepCardProps> = ({
       <p className="text-muted-foreground">{description}</p>
     </div>;
 };
+
 export default GuestHome;
