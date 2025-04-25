@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -25,18 +26,21 @@ const Layout: React.FC<LayoutProps> = ({
     <div className={`min-h-screen flex flex-col ${className}`}>
       {(title || showBackButton) && (
         <header className="sticky top-0 z-10 backdrop-blur-xl bg-background/80 border-b border-border/50">
-          <div className="container px-4 py-4 flex items-center">
-            {showBackButton && (
-              <button 
-                onClick={goBack}
-                className="mr-3 p-2 rounded-lg hover:bg-secondary/80 transition-colors"
-              >
-                <ArrowLeft size={20} className="text-primary" />
-              </button>
-            )}
-            {title && (
-              <h1 className="text-lg font-medium text-primary">{title}</h1>
-            )}
+          <div className="container px-4 py-4 flex items-center justify-between">
+            <div className="flex items-center">
+              {showBackButton && (
+                <button 
+                  onClick={goBack}
+                  className="mr-3 p-2 rounded-lg hover:bg-secondary/80 transition-colors"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft size={20} className="text-primary" />
+                </button>
+              )}
+              {title && (
+                <h1 className="text-lg font-medium text-primary">{title}</h1>
+              )}
+            </div>
           </div>
         </header>
       )}
@@ -74,9 +78,12 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
   return (
     <button 
       onClick={() => navigateTo(view)}
-      className={`flex flex-col items-center p-1 transition-colors ${
-        isActive ? 'text-primary' : 'text-muted-foreground'
+      className={`flex flex-col items-center p-1 transition-all ${
+        isActive 
+          ? 'text-primary scale-105' 
+          : 'text-muted-foreground hover:text-primary/80'
       }`}
+      aria-label={label}
     >
       <span className={`${isMobile ? 'text-xl' : 'text-2xl'} mb-0.5`}>{icon}</span>
       <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>{label}</span>

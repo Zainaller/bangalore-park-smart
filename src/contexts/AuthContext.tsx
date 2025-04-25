@@ -13,6 +13,8 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<{error: any}>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
+  sendOTP: (phone: string) => Promise<{error: any, data: any}>;
+  verifyOTP: (phone: string, token: string) => Promise<{error: any, data: any}>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -100,6 +102,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           data: {
             full_name: fullName,
           },
+          // Remove captcha requirement for now
+          captchaToken: null,
         },
       });
 
@@ -134,6 +138,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
+        // Remove captcha requirement for now
+        options: {
+          captchaToken: null,
+        }
       });
 
       if (error) {
@@ -162,6 +170,72 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const sendOTP = async (phone: string) => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOtp({
+        phone,
+      });
+      
+      if (error) {
+        toast({
+          title: "OTP sending failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return { error, data: null };
+      }
+
+      toast({
+        title: "OTP sent",
+        description: "Check your phone for the verification code.",
+      });
+      
+      return { error: null, data };
+    } catch (error: any) {
+      console.error('Error sending OTP:', error);
+      toast({
+        title: "OTP sending failed",
+        description: error.message,
+        variant: "destructive",
+      });
+      return { error, data: null };
+    }
+  };
+
+  const verifyOTP = async (phone: string, token: string) => {
+    try {
+      const { data, error } = await supabase.auth.verifyOtp({
+        phone,
+        token,
+        type: 'sms',
+      });
+
+      if (error) {
+        toast({
+          title: "Verification failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return { error, data: null };
+      }
+
+      toast({
+        title: "Verification successful",
+        description: "Welcome!",
+      });
+      
+      return { error: null, data };
+    } catch (error: any) {
+      console.error('Error verifying OTP:', error);
+      toast({
+        title: "Verification failed",
+        description: error.message,
+        variant: "destructive",
+      });
+      return { error, data: null };
+    }
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     toast({
@@ -179,6 +253,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     signIn,
     signOut,
     refreshProfile,
+    sendOTP,
+    verifyOTP,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
