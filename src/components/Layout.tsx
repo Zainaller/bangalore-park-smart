@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -24,23 +23,25 @@ const Layout: React.FC<LayoutProps> = ({
   
   return (
     <div className={`min-h-screen flex flex-col ${className}`}>
-      <header className="sticky top-0 z-10 backdrop-blur-xl bg-background/80 border-b border-border/50">
-        <div className="container px-4 py-4 flex items-center">
-          {showBackButton && (
-            <button 
-              onClick={goBack}
-              className="mr-3 p-2 rounded-lg hover:bg-secondary/80 transition-colors"
-            >
-              <ArrowLeft size={20} className="text-primary" />
-            </button>
-          )}
-          {title && (
-            <h1 className="text-lg font-medium text-primary">{title}</h1>
-          )}
-        </div>
-      </header>
+      {(title || showBackButton) && (
+        <header className="sticky top-0 z-10 backdrop-blur-xl bg-background/80 border-b border-border/50">
+          <div className="container px-4 py-4 flex items-center">
+            {showBackButton && (
+              <button 
+                onClick={goBack}
+                className="mr-3 p-2 rounded-lg hover:bg-secondary/80 transition-colors"
+              >
+                <ArrowLeft size={20} className="text-primary" />
+              </button>
+            )}
+            {title && (
+              <h1 className="text-lg font-medium text-primary">{title}</h1>
+            )}
+          </div>
+        </header>
+      )}
       
-      <main className="flex-1 container px-4 py-4 pb-8 overflow-auto">
+      <main className="flex-1 overflow-hidden">
         {children}
       </main>
       
@@ -84,4 +85,3 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, label, view }) => {
 };
 
 export default Layout;
-
