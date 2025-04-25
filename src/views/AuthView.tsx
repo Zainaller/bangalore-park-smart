@@ -5,7 +5,6 @@ import { useNavigation } from '../contexts/NavigationContext';
 import Layout from '../components/Layout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -257,8 +256,8 @@ const AuthView: React.FC = () => {
               {/* Bengaluru-specific imagery */}
               <div className="mt-6 rounded-lg overflow-hidden h-48 relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1587047515797-76670c85310b?q=80&w=2070" 
-                  alt="Bengaluru traffic" 
+                  src="https://images.unsplash.com/photo-1584456929142-8a073521a064?q=80&w=2000" 
+                  alt="Bengaluru multi-level parking" 
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent flex items-end p-4">
@@ -436,8 +435,8 @@ const AuthView: React.FC = () => {
               
               <div className="mt-4 rounded-lg overflow-hidden h-48 relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1598633919372-a08bb5ed7abd?q=80&w=2070" 
-                  alt="Bengaluru city" 
+                  src="https://images.unsplash.com/photo-1573074617613-fc8ef27eaa2f?q=80&w=2000" 
+                  alt="Bengaluru parking garage" 
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent flex items-end p-4">

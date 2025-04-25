@@ -101,9 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         options: {
           data: {
             full_name: fullName,
-          },
-          // Remove captcha requirement for now
-          captchaToken: null,
+          }
         },
       });
 
@@ -137,11 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
-        password,
-        // Remove captcha requirement for now
-        options: {
-          captchaToken: null,
-        }
+        password
       });
 
       if (error) {

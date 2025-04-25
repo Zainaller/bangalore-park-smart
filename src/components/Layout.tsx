@@ -4,6 +4,7 @@ import { useNavigation } from '../contexts/NavigationContext';
 import { useAuth } from '../contexts/AuthContext';
 import { ArrowLeft, Home, Search, Ticket, UserCircle } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import GuestNavbar from './GuestNavbar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,7 +25,11 @@ const Layout: React.FC<LayoutProps> = ({
   
   return (
     <div className={`min-h-screen flex flex-col ${className}`}>
-      {(title || showBackButton) && (
+      {/* Show the guest navbar for non-logged in users */}
+      <GuestNavbar />
+      
+      {/* Only show this header for logged-in users or when backButton/title is needed */}
+      {((title || showBackButton) && user) && (
         <header className="sticky top-0 z-10 backdrop-blur-xl bg-background/80 border-b border-border/50">
           <div className="container px-4 py-4 flex items-center justify-between">
             <div className="flex items-center">
