@@ -16,7 +16,9 @@ const GuestNavbar: React.FC = () => {
       <div className="container px-4 py-3 flex items-center justify-between">
         <div className="flex items-center" onClick={() => navigateTo('home')} role="button">
           <CircleParking className="text-primary w-7 h-7 mr-2" />
-          <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">ParkIt</h1>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            ParkIt <span className="text-sm font-normal">Bengaluru</span>
+          </h1>
         </div>
         
         <nav className="hidden md:flex items-center space-x-6">
