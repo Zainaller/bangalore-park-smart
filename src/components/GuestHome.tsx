@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigation } from '../contexts/NavigationContext';
 import { Car, Shield, Clock, MapPin, CreditCard, PhoneCall, CircleParking, KeyRound, MapPinCheck } from 'lucide-react';
@@ -13,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from 'embla-carousel-react';
 
 const GuestHome: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -36,6 +36,19 @@ const GuestHome: React.FC = () => {
       subtitle: "Premium spots at top locations across the city"
     }
   ];
+
+  // Auto-scroll carousel
+  const [carouselApi, setCarouselApi] = useState<any>(null);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const interval = setInterval(() => {
+      carouselApi.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [carouselApi]);
 
   // Auto rotate features
   useEffect(() => {
@@ -100,7 +113,7 @@ const GuestHome: React.FC = () => {
       <div className="flex flex-col items-center space-y-12 py-8 px-4 pb-16">
         {/* Hero Section with Dynamic Image Carousel */}
         <div className="w-full max-w-6xl mx-auto">
-          <Carousel className="w-full" autoplay>
+          <Carousel className="w-full" setApi={setCarouselApi}>
             <CarouselContent>
               {cityImages.map((image, index) => (
                 <CarouselItem key={index}>
