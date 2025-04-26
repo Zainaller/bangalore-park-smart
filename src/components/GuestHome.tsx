@@ -87,7 +87,6 @@ const GuestHome: React.FC = () => {
   const [activeFeature, setActiveFeature] = useState<number>(0);
   const [carouselApi, setCarouselApi] = useState<any>(null);
 
-  // Update city images with working Unsplash URLs
   const cityImages = [{
     src: "https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?q=80&w=2000",
     title: "Smart Parking in Bengaluru",
@@ -120,7 +119,6 @@ const GuestHome: React.FC = () => {
   return (
     <ScrollArea className="h-[calc(100vh-80px)]">
       <div className="flex flex-col items-center space-y-12 py-8 px-4 pb-16">
-        {/* Hero Carousel Section */}
         <div className="w-full max-w-6xl mx-auto relative">
           <Carousel className="w-full" setApi={setCarouselApi}>
             <CarouselContent>
@@ -169,7 +167,6 @@ const GuestHome: React.FC = () => {
           </Carousel>
         </div>
 
-        {/* Main Content Section */}
         <div className="text-center space-y-6 max-w-2xl mx-auto relative">
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
           <div className="flex items-center justify-center">
@@ -204,7 +201,6 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
           <FeatureCard 
             icon={<Car className="text-primary w-8 h-8" />} 
@@ -229,7 +225,6 @@ const GuestHome: React.FC = () => {
           />
         </div>
 
-        {/* 3D Map Layout Section */}
         <div className="w-full max-w-6xl bg-gradient-to-br from-slate-900/40 to-primary/5 rounded-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
             <div className="flex flex-col justify-center space-y-6">
@@ -240,7 +235,7 @@ const GuestHome: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="bg-primary/20 p-2 rounded-full">
-                    <MapPinCheck className="w-5 h-5 text-primary" />
+                    <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <span className="text-gray-300">Real-time spot availability</span>
                 </div>
@@ -285,7 +280,6 @@ const GuestHome: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer Section */}
         <footer className="w-full max-w-6xl bg-gradient-to-br from-background/80 to-primary/5 rounded-xl p-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
