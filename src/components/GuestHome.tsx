@@ -195,7 +195,7 @@ const GuestHome: React.FC = () => {
               className="group"
             >
               <span className="group-hover:scale-110 transition-transform duration-300 inline-flex items-center">
-                Browse Spots <MapPinCheck className="ml-2 w-4 h-4" />
+                Browse Spots <MapPin className="ml-2 w-4 h-4" />
               </span>
             </Button>
           </div>
