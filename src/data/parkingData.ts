@@ -30,7 +30,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 120,
     availableSpots: 45,
     hourlyRate: 50,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1597749114510-e170bb43af6c?q=80&w=2000"],
     amenities: ["24/7 Security", "CCTV", "Covered Parking", "EV Charging"],
     openingHours: {
       open: "09:00",
@@ -49,7 +49,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 200,
     availableSpots: 72,
     hourlyRate: 60,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1590674385097-f4a4aaebec6b?q=80&w=2000"],
     amenities: ["Security", "CCTV", "Car Wash", "Valet"],
     openingHours: {
       open: "08:00",
@@ -68,7 +68,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 80,
     availableSpots: 12,
     hourlyRate: 40,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1611353407930-325a0ba597de?q=80&w=2000"],
     amenities: ["Metro Access", "24/7 Security", "CCTV"],
     openingHours: {
       open: "06:00",
@@ -87,7 +87,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 150,
     availableSpots: 53,
     hourlyRate: 55,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1572054466274-25b4aae72551?q=80&w=2000"],
     amenities: ["Underground Parking", "CCTV", "Mall Access", "Security"],
     openingHours: {
       open: "10:00",
@@ -106,7 +106,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 100,
     availableSpots: 30,
     hourlyRate: 45,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2000"],
     amenities: ["Park Access", "CCTV", "Security", "Well-lit"],
     openingHours: {
       open: "06:00",
@@ -125,7 +125,7 @@ export const mockParkingSpots: ParkingSpot[] = [
     totalSpots: 90,
     availableSpots: 38,
     hourlyRate: 40,
-    images: ["/placeholder.svg"],
+    images: ["https://images.unsplash.com/photo-1577591578275-a49d953587e4?q=80&w=2000"],
     amenities: ["CCTV", "Security", "Covered Parking", "Electric Charging"],
     openingHours: {
       open: "10:00",
